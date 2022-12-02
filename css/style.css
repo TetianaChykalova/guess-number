@@ -1,10 +1,17 @@
 @import "nullstyle.css";
 
 body {
-    background: #565656;
+    background: rgba(141, 38, 0, 0.72);
     padding: 50px;
     color: aliceblue;
-    font-size: 24px;
+    font-size: 32px;
+}
+.body-win {
+    background: #ecec0c;
+    color: black;
+}
+.body-over {
+    background: #363636;
 }
 button {
     padding: 5px 10px;
