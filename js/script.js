@@ -41,11 +41,9 @@ function inputNewNumber(num) {
             bestResultValue = countAttempt
             countAttempt = 1
         }
-    } else if (num > guessingNumber) {
-        generalText.textContent = 'Too much:( Try again!'
-        countAttempt++
-    } else if (num < guessingNumber) {
-        generalText.textContent = 'Too little:( Try again!'
+    }
+    else {
+        generalText.textContent = num > guessingNumber ? 'Too much:( Try again!' : 'Too little:( Try again!'
         countAttempt++
     }
 }
@@ -55,7 +53,10 @@ buttonTry.addEventListener('click', function () {
 
     if (!inputValue) {
         generalText.textContent = 'Please, enter the number'
-    } else {
+    } else if (inputValue > 20) {
+        generalText.textContent = 'The maximum number is 20'
+    }
+    else {
         attemptsNumber.textContent = attemptsNumber.textContent - 1
         if (attemptsNumber.textContent > 0) {
             inputNewNumber(inputValue)
@@ -77,6 +78,7 @@ buttonStart.addEventListener('click', function () {
     document.body.classList.remove('body-win')
     attemptsNumber.textContent = '20'
     titleNumber.textContent = '???'
+    generalText.textContent = 'Start to guess!'
     buttonTry.removeAttribute('disabled')
     countAttempt = 1
 })
