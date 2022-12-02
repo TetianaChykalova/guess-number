@@ -9,13 +9,14 @@ let bestResult = document.querySelector('.content__text-result')
 
 //VARIABLES BUTTON
 const buttonStart = document.querySelector('.button-start')
+const buttonReload = document.querySelector('.button-reload')
 const buttonTry = document.querySelector('.content__input-button')
 
 //VARIABLES FOR SCRIPT
 let guessingNumber = Math.floor(Math.random() * 20 + 1);
 console.log(guessingNumber)
 
-function newGuessingNumber () {
+function newGuessingNumber() {
     guessingNumber = Math.floor(Math.random() * 20 + 1);
     console.log(guessingNumber)
 }
@@ -23,14 +24,17 @@ function newGuessingNumber () {
 let countAttempt = 1
 let bestResultValue = 20
 
-//SCRIPT
-function inputNewNumber (num) {
-    console.log(countAttempt)
+console.log(countAttempt)
+console.log(bestResultValue)
 
-    if(num == guessingNumber) {
+//SCRIPT
+function inputNewNumber(num) {
+
+    if (num == guessingNumber) {
         titleNumber.textContent = num
         generalText.textContent = 'Bravo! You are winner!'
         document.body.classList.add('body-win')
+        buttonTry.setAttribute('disabled', 'true')
 
         if (countAttempt < bestResultValue) {
             bestResult.textContent = countAttempt
@@ -46,38 +50,37 @@ function inputNewNumber (num) {
     }
 }
 
-function buttonTryScript () {
-    buttonTry.addEventListener('click', function () {
-        let inputValue = +document.querySelector('.content__input-input').value
+buttonTry.addEventListener('click', function () {
+    let inputValue = +document.querySelector('.content__input-input').value
 
-        if(!inputValue) {
-            generalText.textContent = 'Please, enter the number'
+    if (!inputValue) {
+        generalText.textContent = 'Please, enter the number'
+    } else {
+        attemptsNumber.textContent = attemptsNumber.textContent - 1
+        if (attemptsNumber.textContent > 0) {
+            inputNewNumber(inputValue)
         } else {
-            attemptsNumber.textContent = attemptsNumber.textContent - 1
-            if (attemptsNumber.textContent > 0) {
-                inputNewNumber(inputValue)
-            } else {
-                // alert('Game Over!')
-                generalText.textContent = 'Game Over!'
-                attemptsNumber.textContent = '0'
-                document.body.classList.add('body-over')
-                generalText = document.querySelector('.content__text-general')
-            }
+            // alert('Game Over!')
+            generalText.textContent = 'Game Over!'
+            attemptsNumber.textContent = '0'
+            document.body.classList.add('body-over')
+            generalText = document.querySelector('.content__text-general')
         }
-    })
-}
+    }
+})
 
-function reloadForStart() {
-    buttonStart.addEventListener('click', function () {
-        // window.location.reload();
-        newGuessingNumber()
-        document.querySelector('.content__input-input').value = ''
-        document.body.classList.remove('body-over')
-        document.body.classList.remove('body-win')
-        attemptsNumber.textContent = '20'
-        titleNumber.textContent = '???'
-    })
-}
 
-buttonTryScript()
-reloadForStart()
+buttonStart.addEventListener('click', function () {
+    newGuessingNumber()
+    document.querySelector('.content__input-input').value = ''
+    document.body.classList.remove('body-over')
+    document.body.classList.remove('body-win')
+    attemptsNumber.textContent = '20'
+    titleNumber.textContent = '???'
+    buttonTry.removeAttribute('disabled')
+    countAttempt = 1
+})
+
+buttonReload.addEventListener('click', function () {
+    window.location.reload();
+})

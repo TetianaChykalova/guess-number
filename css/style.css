@@ -19,6 +19,8 @@ button {
     color: black;
     font-size: 24px;
     text-align: center;
+    border: #363636 1px solid;
+    border-radius: 10px;
 }
 
 header {
@@ -85,7 +87,9 @@ header {
     width: 130px;
     text-align: center;
 }
-.content__text {}
+.content__text {
+    font-size: 40px;
+}
 .content__input div,
 .content__text div {
     margin: 0 0 20px 0;
