@@ -58,7 +58,8 @@ header {
 
 .content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 500px;
 }
 .content__input {
     display: flex;
@@ -80,5 +81,5 @@ header {
 .content__text {}
 .content__input div,
 .content__text div {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
 }
